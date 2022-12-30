@@ -1,0 +1,76 @@
+﻿<Window x:Class="WPF_Controls_Example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Controls_Example"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+
+    <!--Grid Layout: Notice all the controls are a child of grid -->
+    <Grid Background="#FF8FB0FF">
+        <!--Label: Change Content to change what's displayed-->
+        <Label Content="This is a label" HorizontalAlignment="Left" Margin="63,40,0,0" VerticalAlignment="Top"/>
+
+        <!-- (1) TextBox: Works the same as win forms-->
+        <!--x:Name is how you give your control a .cs name. You can do it here in the tag
+        or in the properties -->
+        <TextBox x:Name="txtInput" HorizontalAlignment="Left" Margin="63,71,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+        <!-- (2) Rich Text Box: This can be far more complex, working like a dom in html. But we keep it simple.-->
+        <RichTextBox Height="NaN" Margin="43,102,598,163" Width="NaN">
+            <FlowDocument>
+                <Paragraph>
+                    <!--Give a name to Run: This is what controls the displayed text. It's like inline in html. Notice I give run a name of rtbDisplay -->
+                    <Run x:Name="rtbDisplay" Text="Change this with rtbDisplay.Text"/>
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+
+        <!-- (3) Button: Works the same as in winforms. Content changes the text-->
+        <!--Double click on form to make event, or write click in xaml tag-->
+        <Button x:Name="btnButtonClick" Content="Click Me" HorizontalAlignment="Left" Margin="63,281,0,0" VerticalAlignment="Top" Click="btnButtonClick_Click" Width="119"/>
+
+        <Label Content="List Box" HorizontalAlignment="Left" Margin="218,18,0,0" VerticalAlignment="Top"/>
+
+        <!-- (4) List Box: Works the same -->
+        <ListBox x:Name="lbTeachers" d:ItemsSource="{d:SampleData ItemCount=5}" Height="NaN" Margin="218,49,469,272" Width="NaN"/>
+
+        <!-- (5) Combo Box: Works the same -->
+        <Label Content="Combo Box" HorizontalAlignment="Left" Margin="218,170,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbTeachers" HorizontalAlignment="Left" Margin="218,201,0,0" VerticalAlignment="Top" Width="113"/>
+
+        <!--Canvas: Using a canvas to group controls, like a panel-->
+        <Canvas Margin="353,32,328,289" Background="#FFFFBD3E">
+            <!--(6) Check Boxes: Change the label with Content-->
+            <CheckBox x:Name="ckOpt1" Content="Option 1" Canvas.Left="18" Canvas.Top="20"/>
+            <CheckBox x:Name="ckOpt2" Content="Option 2" Canvas.Left="18" Canvas.Top="55"/>
+        </Canvas>
+
+        <!--Group Box: Works like group box in Winforms-->
+        <!--Make sure to add a layout, I added a Canvas-->
+        <GroupBox Header="Radio Buttons" Margin="353,150,328,115">
+            <Canvas Background="#FF1FB993">
+                
+                <!-- (7) Radio Buttons: Similar to check boxes-->
+                <RadioButton x:Name="rbChoice1" Content="Choice 1" Canvas.Left="19" Canvas.Top="22"/>
+                <RadioButton x:Name="rbChoice2" Content="Choice 2" Canvas.Left="19" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <RadioButton x:Name="rbChoice3" Content="Choice 3" Canvas.Left="19" Canvas.Top="79" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            </Canvas>
+        </GroupBox>
+        
+        <!-- (8) List View: Different Setup, but easy to use-->
+        <ListView x:Name="lvTeachers" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="509,22,38,90">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                    <GridViewColumn Header="Grade" DisplayMemberBinding="{Binding Grade}"/>
+                    <GridViewColumn Header="Program" DisplayMemberBinding="{Binding Program}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+
+
+    </Grid>
+</Window>
